@@ -15,7 +15,6 @@ class TitleCrudController extends AbstractCrudController
         return Title::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -24,5 +23,4 @@ class TitleCrudController extends AbstractCrudController
             TextEditorField::new('description'),
         ];
     }
-    */
 }
