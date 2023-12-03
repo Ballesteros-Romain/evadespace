@@ -1,3 +1,13 @@
 body {
-    background-color: lightgray;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+$rose: #ffa29a;
+$beige: #faf2d9;
+$vert: #b4f2e5;
+$bleu: #abd8df;
+$gris: #5d6371;
+header {
+  background: $rose;
 }
