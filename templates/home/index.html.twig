@@ -4,4 +4,52 @@
 
 {% block body %}
 {% include "partials/_header.html.twig" %}
+<main>
+    <h1>Evadez vous <br> <span>en travaillant</span> </h1>
+    <div class="encart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+        </svg>
+        <p class="p-encart">Partagez un lieu convivial et chaleureux, <br>
+        favorisant vos projets professionnels.</p>
+    </div>
+    <h2><img src="{{asset('images/image-3.svg')}}" alt="image de bureu" style="margin-right: 20px;">Nos prestations</h2>
+    <p class="text-center mt-5">Notre espace évasion est accessibles 24h/24 et 7j/7. Nos formules sont clés en main et sans engagement pour que vous puissiez vous concentrer sur votre activité.</p>
+    <div class="photo-mobile d-flex justify-content-center mt-5 mb-5">
+        <img src="{{asset('images/bureau-prive.jpg')}}" alt="photo bureau privé" class="big-photo">
+    </div>
+    <div class="mb-5">
+        <h3 class="">Les bureaux privés</h3>
+            <p class="text mb-4">Travaillez en toute tranquillité, dans un espace dédié et sécurisé, avec les avantages du coworking.</p>
+            <a href="#" class="btn-rose">Je découvre</a>
+    </div>
+    <div class="">
+        <div class="photo-mobile d-flex justify-content-center mt-5 mb-5">
+            <img src="{{asset('images/bureaux-partage.svg')}}" alt="photo de bureaux partagés" class="big-photo">
+        </div>
+        <h3>Les bureaux partagés</h3>
+        <p class="text mb-4">Installez-vous dans nos open spaces ! Que ce soit pour un bureau de passage ou à temps complet, nos formules s’adaptent à votre besoin.</p>
+        <a href="#" class="btn-rose">Je découvre</a>
+    </div>
+        <h2 class="mb-5">Mais aussi...</h2>
+    <div class="card m-auto" style="width: 18rem;">
+  <img src="{{asset('images/reunion.svg')}}" class="card-img-top" alt="photo de personne en reunion">
+  <div class="card-body">
+    <h5 class="card-title">Les salles de réunion</h5>
+    <p class="card-text">Profitez de nos salles chaleureuse. Un cadre idéal pour recevoir vos équipes, vos prospects ou vos client !</p>
+    <a href="#" class="btn-card"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+</svg>Je cécouvre</a>
+  </div>
+</div>
+<h2><img src="{{asset('images/avis.svg')}}" alt="image de bureu" style="margin-right: 20px;">Les avis</h2>
+<div class="review mt-5 m-auto">
+    {# {% for avi in review %}
+        <h4 class="text-center">{{review.getAuthor}}</h4>
+        <p class="text-center">{{review.getMessage}}</p>
+        <p class="text-center">{{review.getRating}}</p>
+    {% endfor %} #}
+</div>
+</main>
+{% include "partials/_footer.html.twig" %}
 {% endblock %}
