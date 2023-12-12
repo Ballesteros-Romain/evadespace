@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Donnez votre avis{% endblock %}
+
+{% block body %}
+{% include "partials/_header.html.twig" %}
+<main class="pb-5">
+    <h1>Donnez votre avis !</h1>
+    <div class="form-part registration-form mt-5">
+    {{form_start(reviewForm)}}
+    {{form_row(reviewForm.author, {
+        label: 'Auteur',
+    })}}
+    {{form_row(reviewForm.message)}}
+    {{form_row(reviewForm.rating, {
+        label: 'Note',
+    } )}}
+    {{form_row(reviewForm.workspace, {
+        label: 'Espace de travail',
+    } )}}
+    <button type="submit" class="btn-rose mb-1">Valider</button>
+    {{form_end(reviewForm)}}
+    </div>
+</main>
+
+{% include "partials/_footer.html.twig" %}
+{% endblock %}
+{# {% for user in project.langages %}
+{{ langage.getLangage() }}{% if not loop.last %}, {% endif %}
+{% endfor %} #}
+{# { value: user.getEmail ? user.getEmail : '' } #}
+        {# value: user.firstname ? user.firstname : '' #}
