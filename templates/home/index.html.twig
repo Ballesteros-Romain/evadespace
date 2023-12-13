@@ -43,16 +43,18 @@
   </div>
 </div>
 <h2><img src="{{asset('images/avis.svg')}}" alt="image de bureu" style="margin-right: 20px;">Les avis</h2>
+    <div class="carousel d-flex">
     {% for review in reviews %}
-<div class="review mt-5 m-auto">
-    {% if review.author is not null %}
-        <h4 class="text-center pt-2">{{review.author.firstname}}</h4>
-    {% endif %}
-        <p class="text-center mt-1">{{review.message}}</p>
-        <p class="text-center">{{review.getWorkspace}}</p>
-        <p class="text-center pb-3">{{review.getRating}} /5</p>
-</div>
+        <div class="review mt-5">
+            {% if review.author is not null %}
+                <h4 class="text-center pt-4">{{review.author.firstname}}</h4>
+            {% endif %}
+                <p class="text-center mt-3 p-2">{{review.message}}</p>
+                <p class="text-center">{{review.getWorkspace}}</p>
+                <p class="text-center pb-2">{{review.getRating}} /5</p>
+        </div>
     {% endfor %}
+    </div>
 <div class="end"></div>
 </main>
 {% include "partials/_footer.html.twig" %}
