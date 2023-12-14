@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bureaux partagés{% endblock %}
+
+{% block body %}
+{% include "partials/_header.html.twig" %}
+<main>
+    <h1>Bureaux partagés</h1>
+    <div class="text text-w mt-5 mb-5">
+        <p>Installez-vous dans nos open spaces ! Trouvez la formule qui correspond à votre besoin : poste fixe pour avoir votre poste de travail attitré, ou pass coworking pour un poste nomade. Toutes nos formules sont mensuelles et sans engagement.</p>
+        <p>Exit les open spaces XXL ! Nos espaces de travail partagés sont à taille humaine pour vous permettre de travailler dans les meilleures conditions. L'open space est un lieu dédié au travail dans une ambiance calme et chaleureuse.</p>
+    </div>
+    <a href="" class="btn-call">On s'appelle ?</a>
+    <div class="photo-mobile d-flex justify-content-center mt-5 mb-5">
+        <img src="{{asset('images/bureaux-partage.svg')}}" alt="photo de bureaux partagés">
+    </div>
+    <h2>Poste attitré</h2>
+    <div class="text text-w mt-5 mb-5">
+        <p>Choisissez le bureau qui vous convient le mieux dans l’open space et installez-vous ! Bénéficiez d’un service clef en main, de rangements privatifs et d’un poste de travail attitré, réservé rien que pour vous. Vous pouvez laisser vos affaires sur le bureau et dans les rangements, ce poste de travail vous est dédié 24/7.</p>
+    </div>
+    <div class="photo-mobile d-flex justify-content-center mt-5 mb-5">
+        <img src="{{asset('images/bureau-prive.jpg')}}" alt="photo de bureaux partagés">
+    </div>
+    <h2>Passage régulier</h2>
+        <div class="text text-w mt-5 mb-5">
+        <p>Si vous êtes un visiteur de passage mais régulier et souhaitez bénéficier d’un poste de travail nomade, c’est l’offre qu’il vous faut ! Installez-vous à l’endroit libre de votre choix et travaillez dans de bonnes conditions. Profitez des salles de réunions pour recevoir des clients ou passer vos appels. Vous faites partie de la communauté de la Maison du Coworking !
+        Votre abonnement à un pas</p>
+    </div>
+    <div class="photo-mobile d-flex justify-content-center mt-5 mb-5">
+        <img src="{{asset('images/openspace.jpg')}}" alt="photo de bureaux partagés" class="photo-reduce">
+    </div>
+    <a href="" class="btn-call">On s'appelle ?</a>
+</main>
+{% include "partials/_footer.html.twig" %}
+{% endblock %}
