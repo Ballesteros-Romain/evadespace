@@ -12,11 +12,13 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(ReviewRepository $reviewRepository): Response
     {
+        $user = $this->getUser();
         $reviews = $reviewRepository->findAll();
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'reviews' => $reviews
+            'reviews' => $reviews,
+            'user' => $user
         ]);
     }
 }

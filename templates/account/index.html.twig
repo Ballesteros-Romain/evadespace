@@ -6,6 +6,7 @@
 {% include "partials/_header.html.twig" %}
 <main>
 <a class="deconexion" href="{{path('app_logout')}}">Déconnexion</a>
+<h1>Compte de {{user.firstname}}</h1>
 </main>
 {% include "partials/_footer.html.twig" %}
 {% endblock %}

@@ -55,6 +55,11 @@
         </div>
     {% endfor %}
     </div>
+    {% if user is not null %}
+        <div class="give-review">
+            <a href="{{('/review')}}">Je donne mon avis ici</a>
+        </div>
+    {% endif %}
 <div class="end"></div>
 </main>
 {% include "partials/_footer.html.twig" %}
