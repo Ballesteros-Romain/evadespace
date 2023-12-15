@@ -50,7 +50,9 @@
                 <h4 class="text-center pt-4">{{review.author.firstname}}</h4>
             {% endif %}
                 <p class="text-center mt-3 p-2">{{review.message}}</p>
-                <p class="text-center">{{review.getWorkspace}}</p>
+            {% if review.workspace is not null %}
+                <p class="text-center workspace"> Espace de travail : {{review.Workspace.name}}</p>
+            {% endif %}
                 <p class="text-center pb-2">{{review.getRating}} /5</p>
         </div>
     {% endfor %}

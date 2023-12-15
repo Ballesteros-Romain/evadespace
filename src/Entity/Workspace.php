@@ -25,7 +25,7 @@ class Workspace
     private ?float $price = null;
 
     #[ORM\Column]
-    private ?bool $availanility = null;
+    private ?bool $availanility = true;
 
     #[ORM\OneToMany(mappedBy: 'workspace', targetEntity: Review::class)]
     private Collection $reviews;

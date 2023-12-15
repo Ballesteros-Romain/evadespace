@@ -7,10 +7,16 @@
 <main>
 <a class="deconexion" href="{{path('app_logout')}}">Déconnexion</a>
 <h2>vous êtes connecté <br>en tant que  {{user.firstname}} {{user.name}}</h2>
-
+<div class="text-center mt-5">
+{% for work in works %}
+  <p>Espace de travail: {{work.name}}</p>
+  <p>Capacité: {{work.capacity}} places</p>
+  <p>Prix: {{work.price / 100}}€</p>
+{% endfor %}
+</div>
 <ul>
     <li><a href="">Réserver un crénau</a></li>
-    <li><a href="">Paiments</a></li>
+    <li><a href="{{path('app_payment')}}">Paiments</a></li>
     <li><a href=""></a></li>
     <li><a href=""></a></li>
 </ul>
