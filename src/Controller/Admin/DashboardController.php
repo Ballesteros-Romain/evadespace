@@ -2,25 +2,26 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Reservation;
-use App\Entity\Review;
 use App\Entity\Text;
-use App\Entity\Title;
 use App\Entity\User;
+use App\Entity\Title;
+use App\Entity\Review;
 use App\Entity\Workspace;
+use App\Entity\Reservation;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         return $this->redirect($adminUrlGenerator->setController(UserCrudController::class)->generateUrl());      
     }

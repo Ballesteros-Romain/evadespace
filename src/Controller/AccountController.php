@@ -16,7 +16,9 @@ class AccountController extends AbstractController
     public function index(): Response
     {
         $user = $this->getUser();
-
+        if ($this->getUser()->hasRole('ROLE_ADMIN')) {
+            return $this->redirectToRoute('admin');
+        }
         return $this->render('account/index.html.twig', [
             'controller_name' => 'AccountController',
             'user' => $user,

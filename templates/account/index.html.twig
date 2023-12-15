@@ -6,7 +6,7 @@
 {% include "partials/_header.html.twig" %}
 <main>
 <a class="deconexion" href="{{path('app_logout')}}">Déconnexion</a>
-<h1>Compte de {{user.firstname}}</h1>
+<h2>vous êtes connecté <br>en tant que  {{user.firstname}} {{user.name}}</h2>
 
 <ul>
     <li><a href="">Réserver un crénau</a></li>
@@ -14,9 +14,9 @@
     <li><a href=""></a></li>
     <li><a href=""></a></li>
 </ul>
-<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom">
+{# <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom">
   Tooltip on bottom
-</button>
+</button> #}
 </main>
 {% include "partials/_footer.html.twig" %}
 {% endblock %}
