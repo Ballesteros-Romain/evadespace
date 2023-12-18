@@ -19,8 +19,8 @@ class ReviewController extends AbstractController
     public function index(Request $request, EntityManagerInterface $em, ReviewRepository $reviewRepository, UserRepository $userRepository): Response
     {
         if (!$this->getUser()) {
-            return $this->redirectToRoute('home');
             $this->addFlash('danger', 'vous devez être connecté pour laisser un avis');
+            return $this->redirectToRoute('home');
         } else {
                 $user = $this->getUser();
                 
