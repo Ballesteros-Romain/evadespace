@@ -32,8 +32,7 @@ class WorkspaceCrudController extends AbstractCrudController
             TextField::new('name', 'Nom'),
             NumberField::new('capacity', 'Capacité'),
             MoneyField::new('price', 'Prix')->setCurrency('EUR'),
-            // BooleanField::new('availanility', 'Disponibilités')
-            // ->setProperty('isAvailanility')
+            BooleanField::new('availanility', 'Disponibilités'),
         ];
     
     }

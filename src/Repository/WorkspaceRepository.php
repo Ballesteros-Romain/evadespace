@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Review;
 use App\Entity\Workspace;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Workspace>
@@ -20,7 +21,16 @@ class WorkspaceRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Workspace::class);
     }
+    public function removeOrphanReviews(Workspace $workspace): void
+    {
+        $reviews = $workspace->getReviews()->filter(function (Review $review) {
+            return $review->getWorkspace() === null;
+        });
 
+        foreach ($reviews as $review) {
+            $this->remove($review);
+        }
+    }
 //    /**
 //     * @return Workspace[] Returns an array of Workspace objects
 //     */

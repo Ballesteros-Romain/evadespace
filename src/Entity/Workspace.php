@@ -27,7 +27,7 @@ class Workspace
     #[ORM\Column]
     private ?bool $availanility = true;
 
-    #[ORM\OneToMany(mappedBy: 'workspace', targetEntity: Review::class)]
+    #[ORM\OneToMany(mappedBy: 'workspace', targetEntity: Review::class, cascade: ["remove"])]
     private Collection $reviews;
 
     #[ORM\OneToMany(mappedBy: 'workspace', targetEntity: Reservation::class)]

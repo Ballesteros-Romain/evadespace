@@ -21,6 +21,7 @@ class AccountController extends AbstractController
             return $this->redirectToRoute('admin');
         }
         $work = $workspaceRepository->findAll();
+        // $work = $workspaceRepository->find($name);
         return $this->render('account/index.html.twig', [
             'controller_name' => 'AccountController',
             'user' => $user,

@@ -52,8 +52,8 @@ class ReviewController extends AbstractController
                     $em->persist($review);
                     $em->flush();
                     
-                    $this->addFlash('success', 'Nous avons pris en compte votre avis');
                     return $this->redirectToRoute('home');
+                    $this->addFlash('success', 'Nous avons pris en compte votre avis');
                 } catch (\Exception $e) {
                     $this->addFlash('danger', 'Une erreur est survenue : ' . $e->getMessage());
                 }
