@@ -6,7 +6,7 @@
 {% include "partials/_header.html.twig" %}
 <main>
 <a class="deconexion" href="{{path('app_logout')}}">Déconnexion</a>
-<h2>vous êtes connecté <br>en tant que  {{user.firstname}} {{user.name}}</h2>
+<h2>Bonjour {{user.firstname}} {{user.name}}</h2>
 <div class="text-center mt-5">
 {% for work in works %}
   <p>Espace de travail: {{work.name}}</p>
@@ -16,8 +16,8 @@
 </div>
 {# <p>{{works}}</p> #}
 <ul>
-    <li><a href="">Réserver un crénau</a></li>
-    <li><a href="{{path('app_payment')}}">Paiments</a></li>
+    <li><a href="@">Réserver un crénau</a></li>
+    <li><a href="{{path('app_payment')}}">Tarifs</a></li>
     <li><a href=""></a></li>
     <li><a href=""></a></li>
 </ul>
