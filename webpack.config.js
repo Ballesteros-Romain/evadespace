@@ -25,8 +25,8 @@ Encore
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()
 
-    // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-    .enableStimulusBridge('./assets/controllers.json')
+  // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
+  .enableStimulusBridge("./assets/controllers.json")
 
   // will require an extra script tag for runtime.js
   // but, you probably want this, unless you're building a single-page app
@@ -72,5 +72,7 @@ Encore
 
 // uncomment if you're having problems with a jQuery plugin
 //.autoProvidejQuery()
-
-module.exports = Encore.getWebpackConfig();
+const config = Encore.getWebpackConfig();
+config.target = ["web"];
+module.exports = config;
+// module.exports = Encore.getWebpackConfig();
