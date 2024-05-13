@@ -2,12 +2,69 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Dosis", sans-serif;
+  background: #faf2d9;
+  overflow-x: hidden;
 }
 $rose: #ffa29a;
 $beige: #faf2d9;
 $vert: #b4f2e5;
 $bleu: #abd8df;
 $gris: #5d6371;
+
+// ================================== HEADER ============================================
 header {
   background: $rose;
+  height: 80px;
+}
+.menu-mobile {
+  position: absolute;
+  right: 5%;
+  top: 2%;
+}
+.menu-close-mobile {
+  position: absolute;
+  right: 6.5%;
+  top: 2.8%;
+}
+.logo {
+  width: 80px;
+  height: 80px;
+}
+.personn {
+  position: absolute;
+  right: 25%;
+  top: 3.3%;
+}
+.burger {
+  background: $rose;
+  position: relative;
+  top: -4px;
+  left: 30%;
+  padding-left: 30px;
+  border-radius: 0 0 0 20px;
+}
+nav > a {
+  font-size: 1.4rem;
+  color: $gris;
+  text-decoration: none;
+  padding: 1px;
+}
+
+@media screen and (min-width: 400px) {
+  .menu-close-mobile {
+    position: absolute;
+    right: 5.5%;
+  }
+  .personn {
+    right: 13%;
+  }
+}
+
+// ========================== MAIN ===========================================
+h1 {
+  margin-left: 16%;
+}
+span {
+  background: $vert;
 }
