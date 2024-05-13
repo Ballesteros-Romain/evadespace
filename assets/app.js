@@ -32,6 +32,10 @@ menuMobile.addEventListener("click", function () {
   menuMobileClose.style.visibility = "visible";
   if (window.innerWidth < 400) {
     burger.style.left = "35%";
+  } else if (window.innerWidth < 850) {
+    burger.style.left = "65%";
+  } else if (window.innerWidth < 890) {
+    burger.style.left = "70%";
   } else {
     burger.style.left = "75%";
   }
