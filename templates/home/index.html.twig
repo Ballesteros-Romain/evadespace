@@ -53,13 +53,13 @@
             {% if review.workspace is not null %}
                 <p class="text-center workspace"> Espace de travail : {{review.Workspace.name}}</p>
             {% endif %}
-                <p class="text-center pb-2">Note:  {{review.getRating}} /5</p>
+                <p class="text-center pb-3">Note:  {{review.getRating}} /5</p>
         </div>
     {% endfor %}
     </div>
     {% if user is not null %}
         <div class="give-review">
-            <a href="{{('/review')}}">Je donne mon avis ici</a>
+            <a href="{{('/review')}}" class="key">Je donne mon avis ici</a>
         </div>
     {% endif %}
 <div class="end"></div>

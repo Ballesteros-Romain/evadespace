@@ -49,3 +49,24 @@ menuMobileClose.addEventListener("click", function () {
   burger.style.left = "100%";
 });
 // ===================== CAROUSEL =======================================
+document.addEventListener("DOMContentLoaded", function () {
+  const reviews = document.querySelectorAll(".review");
+  let currentReview = 0;
+  const colors = ["#b4f2e5", "#abd8df"]; // Couleurs de fond
+
+  if (reviews.length > 0) {
+    reviews[currentReview].classList.add("active");
+    reviews[currentReview].style.backgroundColor =
+      colors[currentReview % colors.length];
+  }
+
+  setInterval(() => {
+    reviews[currentReview].classList.remove("active");
+
+    currentReview = (currentReview + 1) % reviews.length;
+
+    reviews[currentReview].classList.add("active");
+    reviews[currentReview].style.backgroundColor =
+      colors[currentReview % colors.length];
+  }, 3000); // Change d'avis toutes les 5 secondes
+});

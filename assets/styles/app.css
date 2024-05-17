@@ -124,7 +124,7 @@ h3 {
 }
 
 .card {
-  border-radius: 0 0 5px 5px;
+  border-radius: 5px;
   background: #5d6371;
   margin: auto;
   height: 400px;
@@ -160,9 +160,58 @@ h3 {
   font-size: larger;
 }
 
+.give-review {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.3em;
+}
+
+.give-review > a {
+  color: black;
+}
+
+.key {
+  animation: key 2s ease infinite;
+}
+
+@keyframes key {
+  0% {
+    font-size: 1em;
+  }
+  50% {
+    font-size: 1.1em;
+  }
+  100% {
+    font-size: 1em;
+  }
+}
 @media screen and (min-width: 400px) {
   h1 {
     font-size: 4rem;
     font-weight: 300;
   }
+}
+.carousel {
+  position: relative;
+  overflow: hidden;
+  height: 200px; /* Ajustez la hauteur selon vos besoins */
+}
+
+.review {
+  opacity: 0;
+  transition: opacity 0.5s;
+  position: absolute;
+  left: 50%;
+  width: 75%;
+  height: 100%;
+  border-radius: 10px;
+  transform: translateX(-50%);
+}
+
+.review.active {
+  opacity: 1;
+}
+
+.text-center {
+  text-align: center;
 }/*# sourceMappingURL=app.css.map */
