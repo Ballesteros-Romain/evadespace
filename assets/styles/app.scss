@@ -120,15 +120,35 @@ h3 {
   margin-bottom: 50px;
 }
 .card {
-  border-radius: 5px;
+  border-radius: 0 0 5px 5px;
   background: $gris;
   margin: auto;
+  height: 400px;
 }
 .card-img-top {
   width: 100%;
 }
+.card-body {
+  color: $beige;
+  & > h5 {
+    margin-top: 3px;
+  }
+}
 .card-title {
   font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.card-text {
+  margin-top: 10px;
+  text-justify: auto;
+}
+.btn-card {
+  color: $rose;
+  text-decoration: none;
+  position: relative;
+  left: 160px;
+  font-size: larger;
 }
 @media screen and (min-width: 400px) {
   h1 {
