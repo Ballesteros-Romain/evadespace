@@ -48,3 +48,4 @@ menuMobileClose.addEventListener("click", function () {
   menuMobileClose.style.visibility = "hidden";
   burger.style.left = "100%";
 });
+// ===================== CAROUSEL =======================================
