@@ -34,7 +34,7 @@ header {
 .personn {
   position: absolute;
   right: 25%;
-  top: 3.3%;
+  top: 3%;
 }
 
 .burger {
@@ -44,6 +44,7 @@ header {
   left: 30%;
   padding-left: 30px;
   border-radius: 0 0 0 20px;
+  z-index: 3;
 }
 
 nav > a {
@@ -235,7 +236,7 @@ footer h5 {
   margin: auto;
   border: 3px solid #ffa29a;
   border-radius: 15px;
-  height: 300px;
+  height: 350px;
   width: 60%;
   padding: 20px;
   display: flex;
@@ -259,10 +260,115 @@ footer h5 {
 
 .connexion input:focus {
   outline: none;
-  border: 2px solid #5d6371;
+  border: 3px solid #ffa29a;
 }
 
 .btn-connexion {
   margin: auto;
   margin-top: 40px !important;
+}
+
+#registration-form {
+  width: 60%;
+  margin: auto;
+  perspective: 1000px;
+  position: relative;
+  height: 450px; /* Adjust as necessary */
+}
+
+.form-part {
+  background-color: #faf2d9;
+  border: 2px solid #ffa29a;
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backface-visibility: hidden;
+  transition: transform 0.6s ease-in-out;
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+}
+
+.form-part.active {
+  display: block;
+  transform: rotateY(0);
+}
+
+.form-part:not(.active) {
+  transform: rotateY(180deg);
+}
+
+.rotate-out {
+  transform: rotateY(180deg);
+}
+
+.rotate-in {
+  transform: rotateY(0deg);
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  background-color: #faf2d9;
+  border: 1px solid #ffa29a;
+  border-radius: 5px;
+  caret-color: #ffa29a;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #ffa29a;
+}
+
+.form-check-input {
+  margin-right: 10px;
+}
+
+.btn-rose {
+  background-color: #ffa29a;
+  color: #5d6371;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.alert {
+  width: 60%;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid #5d6371;
+}
+
+#partOne,
+#partTwo {
+  height: 450px;
 }/*# sourceMappingURL=app.css.map */

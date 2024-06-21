@@ -24,10 +24,11 @@ class RegistrationFormType extends AbstractType
             ->add('address')
             ->add('postcode')
             ->add('agreeTerms', CheckboxType::class, [
-                                'mapped' => false,
+                'label'=> 'Accepter les CGV',
+                'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter les CGV.',
                     ]),
                 ],
             ])
