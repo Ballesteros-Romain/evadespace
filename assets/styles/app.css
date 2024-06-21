@@ -12018,14 +12018,15 @@ header {
   top: 3%;
 }
 
-.burger {
+.burgers {
   background: #ffa29a;
   position: relative;
-  top: -4px;
-  left: 30%;
+  top: 70px;
   padding-left: 30px;
+  padding-right: 100px;
   border-radius: 0 0 0 20px;
   z-index: 3;
+  height: 570px;
 }
 
 nav > a {
@@ -12033,6 +12034,14 @@ nav > a {
   color: #5d6371;
   text-decoration: none;
   padding: 1px;
+}
+
+.call-me {
+  background: #abd8df;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+  color: #5d6371;
 }
 
 @media screen and (min-width: 400px) {
@@ -12235,6 +12244,7 @@ footer h5, footer .h5 {
   border: 2px solid #ffa29a;
   border-radius: 5px;
   caret-color: #ffa29a; /* Optionnel : pour faire en sorte que les inputs prennent toute la largeur disponible */
+  width: 100%;
 }
 
 .connexion input:focus {

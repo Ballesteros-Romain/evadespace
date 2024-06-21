@@ -12,7 +12,7 @@ import "./styles/app.css";
 // ========================= BURGER =======================================
 const menuMobile = document.querySelector(".menu-mobile");
 const menuMobileClose = document.querySelector(".menu-close-mobile");
-const burger = document.querySelector(".burger");
+const burger = document.querySelector(".burgers");
 
 // Ajout de la transition à toutes les propriétés affectées
 menuMobile.style.transition =
@@ -31,13 +31,11 @@ menuMobile.addEventListener("click", function () {
   menuMobileClose.style.opacity = "1";
   menuMobileClose.style.visibility = "visible";
   if (window.innerWidth < 400) {
-    burger.style.left = "35%";
+    burger.style.left = "10%";
   } else if (window.innerWidth < 850) {
-    burger.style.left = "65%";
-  } else if (window.innerWidth < 890) {
-    burger.style.left = "70%";
+    burger.style.left = "15.3%";
   } else {
-    burger.style.left = "75%";
+    burger.style.left = "72%";
   }
 });
 

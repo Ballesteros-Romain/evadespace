@@ -40,20 +40,32 @@ header {
   right: 25%;
   top: 3%;
 }
-.burger {
+.burgers {
   background: $rose;
   position: relative;
-  top: -4px;
-  left: 30%;
+  top: 70px;
+  // left: 30%;
   padding-left: 30px;
+  padding-right: 100px;
   border-radius: 0 0 0 20px;
   z-index: 3;
+  height: 570px;
 }
 nav > a {
   font-size: 1.4rem;
   color: $gris;
   text-decoration: none;
   padding: 1px;
+}
+.call-me {
+  background: $bleu;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+  color: $gris;
+}
+.dropbtn {
+  // padding-right: 30px;
 }
 
 @media screen and (min-width: 400px) {
@@ -247,6 +259,7 @@ footer {
   border: 2px solid $rose;
   border-radius: 5px;
   caret-color: $rose; /* Optionnel : pour faire en sorte que les inputs prennent toute la largeur disponible */
+  width: 100%;
 }
 .connexion input:focus {
   border: 2px solid $gris;
