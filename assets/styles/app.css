@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   margin: 0;
   padding: 0;
@@ -107,6 +108,7 @@ h3 {
 }
 
 .btn-rose {
+  border: 1px solid #ffa29a;
   border-radius: 10px;
   background: #ffa29a;
   padding: 9px;
@@ -118,13 +120,17 @@ h3 {
   -webkit-box-shadow: -1px 2px 7px 4px rgba(0, 0, 0, 0.28);
   -moz-box-shadow: -1px 2px 7px 4px rgba(0, 0, 0, 0.28);
 }
+.btn-rose:hover {
+  background: #fb867b;
+  transition-duration: 0.5s;
+}
 
 .group {
   margin-bottom: 50px;
 }
 
 .card {
-  border-radius: 5px;
+  border-radius: 15px;
   background: #5d6371;
   margin: auto;
   height: 400px;
@@ -194,7 +200,7 @@ h3 {
 .carousel {
   position: relative;
   overflow: hidden;
-  height: 200px; /* Ajustez la hauteur selon vos besoins */
+  height: 300px; /* Ajustez la hauteur selon vos besoins */
 }
 
 .review {
@@ -204,7 +210,7 @@ h3 {
   left: 50%;
   width: 75%;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 15px;
   transform: translateX(-50%);
 }
 
@@ -214,4 +220,49 @@ h3 {
 
 .text-center {
   text-align: center;
+}
+
+footer {
+  background: #ffa29a;
+  height: 80px;
+}
+footer h5 {
+  padding: 10px;
+  font-size: 1.3em;
+}
+
+.connexion {
+  margin: auto;
+  border: 3px solid #ffa29a;
+  border-radius: 15px;
+  height: 300px;
+  width: 60%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre les éléments à l'intérieur de la div */
+}
+
+.connexion label {
+  align-self: flex-start;
+  margin-left: 45px; /* Aligne les labels à gauche */
+}
+
+.connexion input {
+  margin-bottom: 20px;
+  width: 70%;
+  background: #faf2d9;
+  border: 2px solid #ffa29a;
+  border-radius: 5px;
+  caret-color: #ffa29a; /* Optionnel : pour faire en sorte que les inputs prennent toute la largeur disponible */
+}
+
+.connexion input:focus {
+  outline: none;
+  border: 2px solid #5d6371;
+}
+
+.btn-connexion {
+  margin: auto;
+  margin-top: 40px !important;
 }/*# sourceMappingURL=app.css.map */

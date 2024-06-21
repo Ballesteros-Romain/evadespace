@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Review;
 use App\Entity\User;
 use App\Entity\Workspace;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -53,6 +54,11 @@ class ReviewFormType extends AbstractType
             ->add('workspace', EntityType::class, [
                 'class' => Workspace::class,
                 'choice_label' => 'name',
+                'constraints' =>[
+                    new Assert\NotBlank([
+                        'message' => 'Veuillez choisir un espace de travail.',
+                    ]),
+                ]
             ])
         ;
     }
