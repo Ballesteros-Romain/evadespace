@@ -1,3 +1,4 @@
+@import "~bootstrap/scss/bootstrap";
 body {
   margin: 0;
   padding: 0;
@@ -12,7 +13,9 @@ $beige: #faf2d9;
 $vert: #b4f2e5;
 $bleu: #abd8df;
 $gris: #5d6371;
-
+.alert-success {
+  z-index: 10;
+}
 // ================================== HEADER ============================================
 header {
   background: $rose;
@@ -223,7 +226,7 @@ footer {
   margin: auto;
   border: 3px solid $rose;
   border-radius: 15px;
-  height: 350px;
+  // height: 350px;
   width: 60%;
   padding: 20px;
   display: flex;
@@ -233,12 +236,12 @@ footer {
 
 .connexion label {
   align-self: flex-start;
-  margin-left: 45px; /* Aligne les labels à gauche */
+  margin-left: 40px; /* Aligne les labels à gauche */
   // margin-bottom: 10px;
 }
 
 .connexion input {
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
   width: 70%;
   background: $beige;
   border: 2px solid $rose;
@@ -246,21 +249,25 @@ footer {
   caret-color: $rose; /* Optionnel : pour faire en sorte que les inputs prennent toute la largeur disponible */
 }
 .connexion input:focus {
-  outline: none;
-  border: 3px solid $rose;
+  border: 2px solid $gris;
 }
 
 .btn-connexion {
   margin: auto;
   margin-top: 40px !important;
 }
+.form-control:focus {
+  background-color: $beige;
+  box-shadow: none;
+}
 // =============================== INSCRIPTION ==================================
 #registration-form {
-  width: 60%;
+  width: 70%;
   margin: auto;
   perspective: 1000px;
   position: relative;
-  height: 450px; /* Adjust as necessary */
+  height: 600px; /* Adjust as necessary */
+  margin-top: 30px;
 }
 
 .form-part {
@@ -357,5 +364,5 @@ input:focus {
 
 #partOne,
 #partTwo {
-  height: 450px;
+  height: 520px;
 }
