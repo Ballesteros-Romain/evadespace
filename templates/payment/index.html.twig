@@ -6,53 +6,39 @@
 {% include "partials/_header.html.twig" %}
 <main>
     <h1>Choisissez votre bureau !</h1>
-    <div class="container text-center mt-5 pb-4">
-        <div class="row">
-            <div class="col d-flex justify-content-center">
-                <div class="card">
-                    <div class="content">
-                        <div class="title-card">Bureau privé</div>
-                            <div class="price">25.00€</div>
-                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at posuere eros. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                </div>
-                            </div>
-                            <button class="btn-rose btn-buy">Reserver</button>
-                            </div>
-                        </div>
-            <div class="col d-flex justify-content-center">
-                <div class="card">
-                    <div class="content">
-                        <div class="title-card">Poste attitré</div>
-                            <div class="price">39.99€</div>
-                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at posuere eros. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                </div>
-                            </div>
-                            <button class="btn-rose btn-buy">Reserver</button>
-                            </div>
-                        </div>
-                        <div class="col d-flex justify-content-center">
-                <div class="card">
-                    <div class="content">
-                        <div class="title-card">Bureaux partagés</div>
-                            <div class="price">15.00€</div>
-                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at posuere eros. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                </div>
-                            </div>
-                            <button class="btn-rose btn-buy">Reserver</button>
-                            </div>
-                        </div>
-                        <div class="col d-flex justify-content-center">
-                <div class="card">
-                    <div class="content">
-                        <div class="title-card">De passage</div>
-                            <div class="price">15.00€</div>
-                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at posuere eros. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                </div>
-                            </div>
-                            <button class="btn-rose btn-buy">Reserver</button>
-                            </div>
-                        </div>
-        </div>
+    <div class="multiCard">
+    <div class="cards">
+      <div class="content">
+        <div class="titles">Bureau partagés</div>
+        <div class="price">39.99€</div>
+        <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at posuere eros. Interdum et malesuada fames ac ante ipsum primis in faucibus.</div>
+      </div>
+        <button>
+          Reserver
+        </button>
+  </div>
+
+  <div class="cards">
+      <div class="content">
+        <div class="titles">Personal edition</div>
+        <div class="price">$39.99</div>
+        <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at posuere eros. Interdum et malesuada fames ac ante ipsum primis in faucibus.</div>
+      </div>
+        <button>
+          Buy now
+        </button>
+  </div>
+
+  <div class="cards">
+      <div class="content">
+        <div class="titles">Personal edition</div>
+        <div class="price">$39.99</div>
+        <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at posuere eros. Interdum et malesuada fames ac ante ipsum primis in faucibus.</div>
+      </div>
+        <button>
+          Buy now
+        </button>
+  </div>
     </div>
 </main>
 {% include "partials/_footer.html.twig" %}

@@ -64,9 +64,6 @@ nav > a {
   text-align: center;
   color: $gris;
 }
-.dropbtn {
-  // padding-right: 30px;
-}
 
 @media screen and (min-width: 400px) {
   .menu-close-mobile {
@@ -81,6 +78,7 @@ nav > a {
 // ========================== MAIN ===========================================
 main > h1 {
   text-align: center;
+  margin-top: 30px;
 }
 span {
   background: $vert;
@@ -108,8 +106,8 @@ p {
 }
 .photo-mobile > img {
   border-radius: 15px;
-  margin-left: 50%;
-  transform: translateX(-50%);
+  // margin-left: 50%;
+  // transform: translateX(-50%);
   box-shadow: -1px 1px 65px -4px rgba(0, 0, 0, 0.8);
   -webkit-box-shadow: -1px 1px 65px -4px rgba(0, 0, 0, 0.8);
   -moz-box-shadow: -1px 1px 65px -4px rgba(0, 0, 0, 0.8);
@@ -141,10 +139,11 @@ h3 {
   margin-bottom: 50px;
 }
 .card {
-  border-radius: 15px;
+  // border-radius: 15px;
   background: $gris;
   margin: auto;
-  height: 400px;
+  // height: 400px;
+  width: 80%;
 }
 .card-img-top {
   width: 100%;
@@ -168,7 +167,7 @@ h3 {
   color: $rose;
   text-decoration: none;
   position: relative;
-  left: 160px;
+  left: 130px;
   font-size: larger;
 }
 .give-review {
@@ -202,8 +201,9 @@ h3 {
 // ===================== CAROUSEL ============================
 .carousel {
   position: relative;
-  overflow: hidden;
-  height: 300px; /* Ajustez la hauteur selon vos besoins */
+  // overflow: hidden;
+  height: 300px;
+  margin-bottom: 100px; /* Ajustez la hauteur selon vos besoins */
 }
 
 .review {
@@ -239,7 +239,7 @@ footer {
   border: 3px solid $rose;
   border-radius: 15px;
   // height: 350px;
-  width: 60%;
+  width: 80%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -248,7 +248,7 @@ footer {
 
 .connexion label {
   align-self: flex-start;
-  margin-left: 40px; /* Aligne les labels à gauche */
+  // margin-left: 10px; /* Aligne les labels à gauche */
   // margin-bottom: 10px;
 }
 
@@ -378,4 +378,84 @@ input:focus {
 #partOne,
 #partTwo {
   height: 520px;
+}
+
+// ================================ CARDS BUY =================================================
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 260px;
+  padding: 20px 1px;
+  margin: 50px auto;
+  text-align: center;
+  position: relative;
+  // cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(207, 208, 210, 0.4),
+    0 4px 6px -4px rgba(194, 194, 194, 0.4);
+  border-radius: 10px;
+  background: #ffa29a;
+  background: linear-gradient(180deg, #ffa29a 0%, #5d6371 80%);
+  background: -webkit-linear-gradient(180deg, #ffa29a 0%, #5d6371 80%);
+  background: -moz-linear-gradient(180deg, #ffa29a 0%, #5d6371 80%);
+}
+
+.content {
+  padding: 20px;
+}
+
+.content .price {
+  color: $beige;
+  font-weight: 800;
+  font-size: 50px;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.42);
+}
+
+.content .description {
+  color: $beige;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.content .titles {
+  font-weight: 800;
+  text-transform: uppercase;
+  color: $beige;
+  margin-top: 10px;
+  font-size: 25px;
+  letter-spacing: 1px;
+}
+
+button {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border: none;
+  outline: none;
+  color: $gris;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background-color: $rose;
+  border-radius: 0.5rem;
+  width: 90%;
+  text-shadow: 0px 4px 18px #2c3442;
+  font-size: larger;
+  &:hover {
+    background-color: #ffa29a2a;
+  }
+}
+
+@media (min-width: 1000px) {
+  .multiCard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: center;
+  }
+  .cards {
+    min-width: 300px; /* Ensures cards take up space evenly */
+  }
 }
