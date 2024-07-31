@@ -68,3 +68,57 @@ document.addEventListener("DOMContentLoaded", function () {
       colors[currentReview % colors.length];
   }, 3000); // Change d'avis toutes les 5 secondes
 });
+// =========================================================================
+
+import { Calendar } from "@fullcalendar/core";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction"; // Importer le plugin d'interaction
+
+let evenements = [
+  {
+    title: "bureaux partagés",
+    start: "2024-08-14 09:00:00",
+    end: "2024-08-14 11:00:00",
+    backgroundColor: "#5d6371",
+  },
+  {
+    title: "bureaux partagés",
+    start: "2024-08-14 12:00:00",
+    end: "2024-08-14 16:00:00",
+  },
+];
+
+document.addEventListener("DOMContentLoaded", function () {
+  const calendarEl = document.getElementById("calendar");
+  let calendar = new Calendar(calendarEl, {
+    plugins: [timeGridPlugin, dayGridPlugin, interactionPlugin],
+    locale: "fr",
+    businessHours: {
+      // days of week. an array of zero-based day of week integers (0=Sunday)
+      daysOfWeek: [1, 2, 3, 4, 5], // Monday - Thursday
+
+      startTime: "9:00", // a start time (10am in this example)
+      endTime: "18:00", // an end time (6pm in this example)
+    },
+    headerToolbar: {
+      left: "prev,next",
+      center: "title",
+      right: "today,timeGridWeek,dayGridMonth",
+    },
+    buttonText: {
+      today: "aujourd'hui",
+      month: "mois",
+      week: "semaine",
+      day: "jour",
+    },
+    eventInteractive: true,
+    selectable: true,
+    events: evenements,
+    nowIndicator: true,
+    editable: true,
+    navLinks: true,
+  });
+
+  calendar.render();
+});

@@ -459,3 +459,19 @@ button {
     min-width: 300px; /* Ensures cards take up space evenly */
   }
 }
+// ================================================================
+
+/* Style pour les appareils mobiles */
+@media (max-width: 768px) {
+  .fc .fc-toolbar-title {
+    // font-size: 1em; /* Taille de police réduite pour les petits écrans */
+    display: none;
+  }
+
+  .fc-next-button .fc-button .fc-button-primary {
+    font-size: 0.3em;
+  }
+  .fc-button-group {
+    margin: 1em;
+  }
+}
