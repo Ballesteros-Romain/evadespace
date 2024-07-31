@@ -81,14 +81,14 @@ document.addEventListener("DOMContentLoaded", function () {
     plugins: [timeGridPlugin, dayGridPlugin, interactionPlugin],
     locale: "fr",
     businessHours: {
-      daysOfWeek: [1, 2, 3, 4, 5], // Monday - Thursday
+      daysOfWeek: [1, 2, 3, 4, 5],
       startTime: "9:00",
       endTime: "18:00",
     },
     headerToolbar: {
       left: "prev,next",
       center: "title",
-      right: "today,timeGridWeek,dayGridMonth",
+      right: "today,timeGridWeek,dayGridMonth deleteEventButton",
     },
     buttonText: {
       today: "aujourd'hui",
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     nowIndicator: true,
     editable: true,
     navLinks: true,
-    events: "/api/reservations", // URL to fetch events from
+    events: "/api/events",
 
     select: function (info) {
       const start = info.startStr;
@@ -143,7 +143,141 @@ document.addEventListener("DOMContentLoaded", function () {
           });
       }
 
-      calendar.unselect(); // Deselect the date range
+      calendar.unselect();
+    },
+
+    eventClick: function (info) {
+      const eventId = info.event.id;
+      const newTitle = prompt(
+        "Modifier le titre de la réservation:",
+        info.event.title
+      );
+      if (newTitle !== null) {
+        fetch(`/api/reservations/${eventId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": document
+              .querySelector('meta[name="csrf-token"]')
+              .getAttribute("content"),
+          },
+          body: JSON.stringify({
+            title: newTitle,
+            start_date: info.event.start.toISOString(),
+            end_date: info.event.end.toISOString(),
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              info.event.setProp("title", newTitle);
+            } else {
+              alert("Error updating reservation");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Error updating reservation");
+          });
+      }
+    },
+
+    eventDrop: function (info) {
+      const eventId = info.event.id;
+      fetch(`/api/reservations/${eventId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content"),
+        },
+        body: JSON.stringify({
+          start_date: info.event.start.toISOString(),
+          end_date: info.event.end.toISOString(),
+          title: info.event.title,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (!data.success) {
+            alert("Error updating reservation");
+            info.revert();
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Error updating reservation");
+          info.revert();
+        });
+    },
+
+    eventResize: function (info) {
+      const eventId = info.event.id;
+      fetch(`/api/reservations/${eventId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content"),
+        },
+        body: JSON.stringify({
+          start_date: info.event.start.toISOString(),
+          end_date: info.event.end.toISOString(),
+          title: info.event.title,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (!data.success) {
+            alert("Error updating reservation");
+            info.revert();
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Error updating reservation");
+          info.revert();
+        });
+    },
+
+    customButtons: {
+      deleteEventButton: {
+        text: "Delete",
+        click: function () {
+          const title = prompt("Enter the title of the event to delete:");
+          if (title) {
+            fetch(`/api/reservations`, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-Token": document
+                  .querySelector('meta[name="csrf-token"]')
+                  .getAttribute("content"),
+              },
+              body: JSON.stringify({ title: title }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.success) {
+                  const event = calendar
+                    .getEvents()
+                    .find((event) => event.title === title);
+                  if (event) {
+                    event.remove();
+                  }
+                } else {
+                  alert("Error deleting reservation");
+                }
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+                alert("Error deleting reservation");
+              });
+          }
+        },
+      },
     },
   });
 
