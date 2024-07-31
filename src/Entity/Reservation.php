@@ -17,10 +17,10 @@ class Reservation
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     private ?Workspace $workspace = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)] // Changed to DATETIME_MUTABLE to include time
     private ?\DateTimeInterface $start_date = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)] // Changed to DATETIME_MUTABLE to include time
     private ?\DateTimeInterface $end_date = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]

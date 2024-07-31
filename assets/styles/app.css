@@ -12439,6 +12439,10 @@ button:hover {
     min-width: 300px; /* Ensures cards take up space evenly */
   }
 }
+.fc-button-group {
+  margin: 1.5em;
+}
+
 /* Style pour les appareils mobiles */
 @media (max-width: 768px) {
   .fc .fc-toolbar-title {

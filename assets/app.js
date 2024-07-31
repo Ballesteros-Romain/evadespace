@@ -112,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
       week: "semaine",
       day: "jour",
     },
+    allDayText: "jour entier",
     eventInteractive: true,
     selectable: true,
     events: evenements,

@@ -460,7 +460,9 @@ button {
   }
 }
 // ================================================================
-
+.fc-button-group {
+  margin: 1.5em;
+}
 /* Style pour les appareils mobiles */
 @media (max-width: 768px) {
   .fc .fc-toolbar-title {
