@@ -12441,6 +12441,33 @@ button:hover {
 }
 .fc-button-group {
   margin: 1.5em;
+  color: #5d6371;
+}
+
+.fc-col-header-cell-cushion,
+.fc-toolbar-title,
+.fc-timegrid-slot-label-cushion,
+.fc-scrollgrid-sync-inner {
+  color: #5d6371;
+}
+
+.fc-event-title-container,
+.fc-event-time,
+.fc-event-main {
+  background: #ffa29a;
+  border-color: #ffa29a;
+  color: #5d6371;
+}
+
+.fc-icon,
+.fc-icon-chevron-right {
+  background: #ffa29a;
+  color: #5d6371;
+}
+
+.fc,
+.fc-button-primary {
+  color: #5d6371;
 }
 
 /* Style pour les appareils mobiles */

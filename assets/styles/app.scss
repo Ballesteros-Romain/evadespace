@@ -462,6 +462,30 @@ button {
 // ================================================================
 .fc-button-group {
   margin: 1.5em;
+  color: $gris;
+}
+.fc-col-header-cell-cushion,
+.fc-toolbar-title,
+.fc-timegrid-slot-label-cushion,
+.fc-scrollgrid-sync-inner {
+  color: $gris;
+  // background: $rose;
+}
+.fc-event-title-container,
+.fc-event-time,
+.fc-event-main {
+  background: $rose;
+  border-color: $rose;
+  color: $gris;
+}
+.fc-icon,
+.fc-icon-chevron-right {
+  background: $rose;
+  color: $gris;
+}
+.fc,
+.fc-button-primary {
+  color: $gris;
 }
 /* Style pour les appareils mobiles */
 @media (max-width: 768px) {
