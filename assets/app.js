@@ -73,21 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 import { Calendar } from "@fullcalendar/core";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction"; // Importer le plugin d'interaction
-
-let evenements = [
-  {
-    title: "bureaux partagés",
-    start: "2024-08-14 09:00:00",
-    end: "2024-08-14 11:00:00",
-    backgroundColor: "#5d6371",
-  },
-  {
-    title: "bureaux partagés",
-    start: "2024-08-14 12:00:00",
-    end: "2024-08-14 16:00:00",
-  },
-];
+import interactionPlugin from "@fullcalendar/interaction";
 
 document.addEventListener("DOMContentLoaded", function () {
   const calendarEl = document.getElementById("calendar");
@@ -95,11 +81,9 @@ document.addEventListener("DOMContentLoaded", function () {
     plugins: [timeGridPlugin, dayGridPlugin, interactionPlugin],
     locale: "fr",
     businessHours: {
-      // days of week. an array of zero-based day of week integers (0=Sunday)
       daysOfWeek: [1, 2, 3, 4, 5], // Monday - Thursday
-
-      startTime: "9:00", // a start time (10am in this example)
-      endTime: "18:00", // an end time (6pm in this example)
+      startTime: "9:00",
+      endTime: "18:00",
     },
     headerToolbar: {
       left: "prev,next",
@@ -115,10 +99,52 @@ document.addEventListener("DOMContentLoaded", function () {
     allDayText: "jour entier",
     eventInteractive: true,
     selectable: true,
-    events: evenements,
     nowIndicator: true,
     editable: true,
     navLinks: true,
+    events: "/api/reservations", // URL to fetch events from
+
+    select: function (info) {
+      const start = info.startStr;
+      const end = info.endStr;
+
+      const title = prompt("Entrez un titre de réservation:");
+      if (title) {
+        fetch("/api/reservations", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": document
+              .querySelector('meta[name="csrf-token"]')
+              .getAttribute("content"),
+          },
+          body: JSON.stringify({
+            start_date: start,
+            end_date: end,
+            title: title,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              calendar.addEvent({
+                id: data.id,
+                title: title,
+                start: start,
+                end: end,
+              });
+            } else {
+              alert("Error saving reservation");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Error saving reservation");
+          });
+      }
+
+      calendar.unselect(); // Deselect the date range
+    },
   });
 
   calendar.render();

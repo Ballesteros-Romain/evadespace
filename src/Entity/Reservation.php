@@ -29,6 +29,9 @@ class Reservation
     #[ORM\ManyToOne(inversedBy: 'reservation')]
     private ?Payment $payment = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Reservation
     public function setPayment(?Payment $payment): static
     {
         $this->payment = $payment;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): static
+    {
+        $this->title = $title;
 
         return $this;
     }
