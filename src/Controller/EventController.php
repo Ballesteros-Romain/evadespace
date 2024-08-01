@@ -27,8 +27,8 @@ class EventController extends AbstractController
             $events[] = [
                 'id' => $reservation->getId(),
                 'title' => $reservation->getTitle(),
-                'start' => $reservation->getStartDate()->format('Y-m-d\TH:i:s'),
-                'end' => $reservation->getEndDate()->format('Y-m-d\TH:i:s'),
+                'start' => $reservation->getStartDate()->format(\DateTime::ATOM),
+                'end' => $reservation->getEndDate()->format(\DateTime::ATOM),
             ];
         }
 
@@ -46,8 +46,8 @@ class EventController extends AbstractController
         $event = [
             'id' => $reservation->getId(),
             'title' => $reservation->getTitle(),
-            'start' => $reservation->getStartDate()->format('Y-m-d\TH:i:s'),
-            'end' => $reservation->getEndDate()->format('Y-m-d\TH:i:s'),
+            'start' => $reservation->getStartDate()->format(\DateTime::ATOM),
+            'end' => $reservation->getEndDate()->format(\DateTime::ATOM),
         ];
 
         return new JsonResponse($event);

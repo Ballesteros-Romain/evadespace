@@ -80,9 +80,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let calendar = new Calendar(calendarEl, {
     plugins: [timeGridPlugin, dayGridPlugin, interactionPlugin],
     locale: "fr",
+    timeZone: "local",
     businessHours: {
       daysOfWeek: [1, 2, 3, 4, 5],
-      startTime: "9:00",
+      startTime: "09:00",
       endTime: "18:00",
     },
     headerToolbar: {
@@ -108,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const start = info.startStr;
       const end = info.endStr;
 
-      const title = prompt("Entrez un titre de réservation:");
+      const title = prompt("Entrez un nom de réservation:");
       if (title) {
         fetch("/api/reservations", {
           method: "POST",
@@ -119,8 +120,8 @@ document.addEventListener("DOMContentLoaded", function () {
               .getAttribute("content"),
           },
           body: JSON.stringify({
-            start_date: start,
-            end_date: end,
+            start_date: new Date(start).toISOString(),
+            end_date: new Date(end).toISOString(),
             title: title,
           }),
         })
@@ -164,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
           body: JSON.stringify({
             title: newTitle,
             start_date: info.event.start.toISOString(),
-            end_date: info.event.end.toISOString(),
+            end_date: info.event.end ? info.event.end.toISOString() : null,
           }),
         })
           .then((response) => response.json())
@@ -194,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         body: JSON.stringify({
           start_date: info.event.start.toISOString(),
-          end_date: info.event.end.toISOString(),
+          end_date: info.event.end ? info.event.end.toISOString() : null,
           title: info.event.title,
         }),
       })
