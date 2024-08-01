@@ -13,13 +13,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const year = date.getFullYear();
     const hours = date.getHours().toString().padStart(2, "0");
     const minutes = date.getMinutes().toString().padStart(2, "0");
-    return `${day}-${month}-${year} ${hours}:${minutes}`;
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
   }
 
   // Fonction pour convertir une date au format "DD-MM-YYYY HH:MM" en format ISO
   function parseDateFromPrompt(dateString) {
     const [day, month, year, hour, minute] = dateString
-      .split(/[-\s:]/)
+      .split(/[/\s:]/)
       .map(Number);
     return new Date(year, month - 1, day, hour, minute).toISOString();
   }
