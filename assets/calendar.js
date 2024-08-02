@@ -51,7 +51,10 @@ document.addEventListener("DOMContentLoaded", function () {
     editable: true,
     navLinks: true,
     events: "/api/events",
-
+    selectAllow: function (selectInfo) {
+      let start = start.getHours();
+      let end = end.getHours();
+    },
     select: function (info) {
       const start = info.start;
       const end = info.end;
@@ -59,11 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
       // Pré-remplir les champs du prompt avec les valeurs sélectionnées
       const title = prompt("Entrez un nom de réservation:");
       const startDate = prompt(
-        "Entrez la date et l'heure de début (format: DD-MM-YYYY HH:MM):",
+        "Entrez la date et l'heure de début (format: DD/MM/YYYY HH:MM):",
         formatDateForPrompt(start)
       );
       const endDate = prompt(
-        "Entrez la date et l'heure de fin (format: DD-MM-YYYY HH:MM):",
+        "Entrez la date et l'heure de fin (format: DD/MM/YYYY HH:MM):",
         formatDateForPrompt(end)
       );
 
