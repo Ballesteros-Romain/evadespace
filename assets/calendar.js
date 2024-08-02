@@ -6,7 +6,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 document.addEventListener("DOMContentLoaded", function () {
   const calendarEl = document.getElementById("calendar");
 
-  // Fonction pour formater une date en format "DD-MM-YYYY HH:MM"
+  // Fonction pour formater une date en format "DD/MM/YYYY HH:MM"
   function formatDateForPrompt(date) {
     const day = date.getDate().toString().padStart(2, "0");
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -16,12 +16,26 @@ document.addEventListener("DOMContentLoaded", function () {
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   }
 
-  // Fonction pour convertir une date au format "DD-MM-YYYY HH:MM" en format ISO
+  // Fonction pour convertir une date au format "DD/MM/YYYY HH:MM" en format ISO
   function parseDateFromPrompt(dateString) {
     const [day, month, year, hour, minute] = dateString
       .split(/[/\s:]/)
       .map(Number);
     return new Date(year, month - 1, day, hour, minute).toISOString();
+  }
+
+  // Fonction pour vérifier si la date est dans les horaires d'ouverture
+  function isWithinBusinessHours(date) {
+    const dayOfWeek = date.getDay();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    // Horaires d'ouverture (09:00 - 18:00) du lundi au vendredi
+    return (
+      dayOfWeek >= 1 &&
+      dayOfWeek <= 5 &&
+      (hour > 9 || (hour === 9 && minute >= 0)) &&
+      (hour < 18 || (hour === 18 && minute === 0))
+    );
   }
 
   let calendar = new Calendar(calendarEl, {
@@ -51,26 +65,44 @@ document.addEventListener("DOMContentLoaded", function () {
     editable: true,
     navLinks: true,
     events: "/api/events",
-    selectAllow: function (selectInfo) {
-      let start = start.getHours();
-      let end = end.getHours();
-    },
     select: function (info) {
       const start = info.start;
       const end = info.end;
 
       // Pré-remplir les champs du prompt avec les valeurs sélectionnées
       const title = prompt("Entrez un nom de réservation:");
+      if (title === null) {
+        return; // Si l'utilisateur clique sur "Annuler", arrêter ici
+      }
       const startDate = prompt(
         "Entrez la date et l'heure de début (format: DD/MM/YYYY HH:MM):",
         formatDateForPrompt(start)
       );
+      if (title === null) {
+        return; // Si l'utilisateur clique sur "Annuler", arrêter ici
+      }
       const endDate = prompt(
         "Entrez la date et l'heure de fin (format: DD/MM/YYYY HH:MM):",
         formatDateForPrompt(end)
       );
+      if (title === null) {
+        return; // Si l'utilisateur clique sur "Annuler", arrêter ici
+      }
 
       if (title && startDate && endDate) {
+        const startDateParsed = new Date(parseDateFromPrompt(startDate));
+        const endDateParsed = new Date(parseDateFromPrompt(endDate));
+
+        if (
+          !isWithinBusinessHours(startDateParsed) ||
+          !isWithinBusinessHours(endDateParsed)
+        ) {
+          alert(
+            "Les dates doivent être dans les horaires d'ouverture (09:00 - 18:00) du lundi au vendredi."
+          );
+          return;
+        }
+
         fetch("/api/reservations", {
           method: "POST",
           headers: {
@@ -134,6 +166,19 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       if (newTitle !== null && newStartDate && newEndDate) {
+        const newStartDateParsed = new Date(parseDateFromPrompt(newStartDate));
+        const newEndDateParsed = new Date(parseDateFromPrompt(newEndDate));
+
+        if (
+          !isWithinBusinessHours(newStartDateParsed) ||
+          !isWithinBusinessHours(newEndDateParsed)
+        ) {
+          alert(
+            "Les dates doivent être dans les horaires d'ouverture (09:00 - 18:00) du lundi au vendredi."
+          );
+          return;
+        }
+
         fetch(`/api/reservations/${eventId}`, {
           method: "PUT",
           headers: {
@@ -169,6 +214,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     eventDrop: function (info) {
       const eventId = info.event.id;
+      const newStart = info.event.start;
+      const newEnd = info.event.end;
+
+      if (
+        !isWithinBusinessHours(newStart) ||
+        (newEnd && !isWithinBusinessHours(newEnd))
+      ) {
+        alert(
+          "Les dates doivent être dans les horaires d'ouverture (09:00 - 18:00) du lundi au vendredi."
+        );
+        info.revert();
+        return;
+      }
       fetch(`/api/reservations/${eventId}`, {
         method: "PUT",
         headers: {
@@ -199,6 +257,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     eventResize: function (info) {
       const eventId = info.event.id;
+      const newStart = info.event.start;
+      const newEnd = info.event.end;
+
+      if (
+        !isWithinBusinessHours(newStart) ||
+        (newEnd && !isWithinBusinessHours(newEnd))
+      ) {
+        alert(
+          "Les dates doivent être dans les horaires d'ouverture (09:00 - 18:00) du lundi au vendredi."
+        );
+        info.revert();
+        return;
+      }
+
       fetch(`/api/reservations/${eventId}`, {
         method: "PUT",
         headers: {
