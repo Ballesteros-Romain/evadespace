@@ -12268,7 +12268,7 @@ footer h5, footer .h5 {
 }
 
 .form-part {
-  background-color: #faf2d9;
+  background-color: red;
   border: 2px solid #ffa29a;
   border-radius: 15px;
   padding: 30px;
@@ -12338,7 +12338,7 @@ footer h5, footer .h5 {
   padding: 10px 20px;
   cursor: pointer;
   margin-top: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .alert {
