@@ -12024,7 +12024,7 @@ header {
   top: 70px;
   padding-left: 30px;
   padding-right: 100px;
-  border-radius: 0 0 0 20px;
+  border-radius: 0 0 20 20px;
   z-index: 3;
   height: 570px;
 }
@@ -12268,7 +12268,7 @@ footer h5, footer .h5 {
 }
 
 .form-part {
-  background-color: red;
+  background-color: #faf2d9;
   border: 2px solid #ffa29a;
   border-radius: 15px;
   padding: 30px;
@@ -12284,53 +12284,6 @@ footer h5, footer .h5 {
   left: 0;
 }
 
-.form-part.active {
-  display: block;
-  transform: rotateY(0);
-}
-
-.form-part:not(.active) {
-  transform: rotateY(180deg);
-}
-
-.rotate-out {
-  transform: rotateY(180deg);
-}
-
-.rotate-in {
-  transform: rotateY(0deg);
-}
-
-.form-group {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.form-control {
-  width: 100%;
-  padding: 10px;
-  background-color: #faf2d9;
-  border: 1px solid #ffa29a;
-  border-radius: 5px;
-  caret-color: #ffa29a;
-  box-sizing: border-box;
-}
-
-.form-control:focus {
-  outline: none;
-  border-color: #ffa29a;
-}
-
-.form-check-input {
-  margin-right: 10px;
-}
-
 .btn-rose {
   background-color: #ffa29a;
   color: #5d6371;
@@ -12338,7 +12291,7 @@ footer h5, footer .h5 {
   padding: 10px 20px;
   cursor: pointer;
   margin-top: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .alert {

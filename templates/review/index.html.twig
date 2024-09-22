@@ -5,7 +5,7 @@
 {% block body %}
 {% include "partials/_header.html.twig" %}
 <main class="pb-5">
-    <h1>Donnez votre avis !</h1>
+    <h1 class="testForm">Donnez votre avis !</h1>
     <div class="form-part registration-form mt-5">
     {{form_start(reviewForm)}}
     {{form_row(reviewForm.author, {
@@ -19,6 +19,7 @@
         label: 'Espace de travail',
     } )}}
     <button type="submit" class="btn-rose mb-1">Valider</button>
+    {{form_rest(reviewForm)}}
     {{form_end(reviewForm)}}
     </div>
 </main>
