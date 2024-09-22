@@ -21,9 +21,13 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/reservation', name: 'app_reservation')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        return $this->render('reservation/index.html.twig');
+        $workspaceId = $request->query->get('workspace');
+
+        return $this->render('reservation/index.html.twig', [
+            'workspaceId' => $workspaceId,
+        ]);
     }
 
     #[Route('/api/reservations', name: 'api_reservations', methods: ['POST'])]
