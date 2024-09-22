@@ -33,6 +33,9 @@ class Workspace
     #[ORM\OneToMany(mappedBy: 'workspace', targetEntity: Reservation::class)]
     private Collection $reservations;
 
+    #[ORM\Column]
+    private ?int $StripePriceId = null;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
@@ -148,6 +151,18 @@ class Workspace
                 $reservation->setWorkspace(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStripePriceId(): ?int
+    {
+        return $this->StripePriceId;
+    }
+
+    public function setStripePriceId(int $StripePriceId): static
+    {
+        $this->StripePriceId = $StripePriceId;
 
         return $this;
     }

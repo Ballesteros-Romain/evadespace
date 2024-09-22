@@ -58,7 +58,10 @@ document.addEventListener("DOMContentLoaded", function () {
       week: "semaine",
       day: "jour",
     },
+    minTime: "09:00:00", // Début de la journée à 9h
+    defaultAllDayEventDuration: { hours: 8 }, // Durée par défaut de 8 heures
     allDayText: "jour entier",
+    allDaySlot: false,
     eventInteractive: true,
     selectable: true,
     nowIndicator: true,
@@ -74,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (title === null) {
         return; // Si l'utilisateur clique sur "Annuler", arrêter ici
       }
+
       const startDate = prompt(
         "Entrez la date et l'heure de début (format: DD/MM/YYYY HH:MM):",
         formatDateForPrompt(start)

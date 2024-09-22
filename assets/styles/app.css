@@ -12008,7 +12008,7 @@ header {
 }
 
 .logo {
-  width: 80px;
+  width: 90px;
   height: 80px;
 }
 
@@ -12024,7 +12024,7 @@ header {
   top: 70px;
   padding-left: 30px;
   padding-right: 100px;
-  border-radius: 0 0 20 20px;
+  border-radius: 0 0 20px 20px;
   z-index: 3;
   height: 570px;
 }
@@ -12051,6 +12051,9 @@ nav > a {
   }
   .personn {
     right: 13%;
+  }
+  .logo {
+    margin-left: 15px;
   }
 }
 main > h1, main > .h1 {
@@ -12282,6 +12285,53 @@ footer h5, footer .h5 {
   box-sizing: border-box;
   top: 0;
   left: 0;
+}
+
+.form-part.active {
+  display: block;
+  transform: rotateY(0);
+}
+
+.form-part:not(.active) {
+  transform: rotateY(180deg);
+}
+
+.rotate-out {
+  transform: rotateY(180deg);
+}
+
+.rotate-in {
+  transform: rotateY(0deg);
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  background-color: #faf2d9;
+  border: 1px solid #ffa29a;
+  border-radius: 5px;
+  caret-color: #ffa29a;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #ffa29a;
+}
+
+.form-check-input {
+  margin-right: 10px;
 }
 
 .btn-rose {

@@ -32,8 +32,9 @@ header {
   top: 2.8%;
 }
 .logo {
-  width: 80px;
+  width: 90px;
   height: 80px;
+  // margin-left: 15px;
 }
 .personn {
   position: absolute;
@@ -47,7 +48,7 @@ header {
   // left: 30%;
   padding-left: 30px;
   padding-right: 100px;
-  border-radius: 0 0 20 20px;
+  border-radius: 0 0 20px 20px;
   z-index: 3;
   height: 570px;
 }
@@ -72,6 +73,9 @@ nav > a {
   }
   .personn {
     right: 13%;
+  }
+  .logo {
+    margin-left: 15px;
   }
 }
 
@@ -300,52 +304,52 @@ footer {
   left: 0;
 }
 
-// .form-part.active {
-//   display: block;
-//   transform: rotateY(0);
-// }
+.form-part.active {
+  display: block;
+  transform: rotateY(0);
+}
 
-// .form-part:not(.active) {
-//   transform: rotateY(180deg);
-// }
+.form-part:not(.active) {
+  transform: rotateY(180deg);
+}
 
-// .rotate-out {
-//   transform: rotateY(180deg);
-// }
+.rotate-out {
+  transform: rotateY(180deg);
+}
 
-// .rotate-in {
-//   transform: rotateY(0deg);
-// }
+.rotate-in {
+  transform: rotateY(0deg);
+}
 
-// .form-group {
-//   width: 100%;
-//   margin-bottom: 20px;
-// }
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
 
-// .form-label {
-//   display: block;
-//   margin-bottom: 5px;
-//   font-weight: bold;
-// }
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
 
-// .form-control {
-//   width: 100%;
-//   padding: 10px;
-//   background-color: $beige;
-//   border: 1px solid $rose;
-//   border-radius: 5px;
-//   caret-color: $rose;
-//   box-sizing: border-box;
-// }
+.form-control {
+  width: 100%;
+  padding: 10px;
+  background-color: $beige;
+  border: 1px solid $rose;
+  border-radius: 5px;
+  caret-color: $rose;
+  box-sizing: border-box;
+}
 
-// .form-control:focus {
-//   outline: none;
-//   border-color: $rose;
-// }
+.form-control:focus {
+  outline: none;
+  border-color: $rose;
+}
 
-// .form-check-input {
-//   margin-right: 10px;
-// }
+.form-check-input {
+  margin-right: 10px;
+}
 
 .btn-rose {
   background-color: $rose;
