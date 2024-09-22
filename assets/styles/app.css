@@ -12214,6 +12214,22 @@ h3, .h3 {
   text-align: center;
 }
 
+.form-review {
+  background-color: #faf2d9;
+  border: 2px solid #ffa29a;
+  border-radius: 15px;
+  padding: 30px;
+  width: 80%;
+  box-sizing: border-box;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.form-select {
+  background-color: #faf2d9;
+  border: 1px solid #ffa29a;
+}
+
 footer {
   background: #ffa29a;
   height: 80px;

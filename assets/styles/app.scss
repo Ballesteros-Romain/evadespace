@@ -227,6 +227,22 @@ h3 {
 .text-center {
   text-align: center;
 }
+//======================================= FORM REVIEW ==============================
+
+.form-review {
+  background-color: $beige;
+  border: 2px solid $rose;
+  border-radius: 15px;
+  padding: 30px;
+  width: 80%;
+  box-sizing: border-box;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.form-select {
+  background-color: $beige;
+  border: 1px solid $rose;
+}
 // ===================================== FOOTER ====================================
 footer {
   background: $rose;
