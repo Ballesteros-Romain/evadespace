@@ -1,4 +1,6 @@
 import "./bootstrap.js";
+import "@popperjs/core";
+
 /*
  * Welcome to your app's main JavaScript file!
  *

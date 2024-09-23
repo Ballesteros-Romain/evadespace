@@ -71,4 +71,13 @@ class OfficeSharingController extends AbstractController
 
         ]);
     }
+
+    #[Route('/cookie', name: 'app_cookie')]
+    public function cookie()
+    {
+
+        return $this->render('office_sharing/cookie.html.twig', [
+
+        ]);
+    }
 }
