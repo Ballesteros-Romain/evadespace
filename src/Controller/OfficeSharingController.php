@@ -62,4 +62,13 @@ class OfficeSharingController extends AbstractController
 
         ]);
     }
+
+    #[Route('/RGPD', name: 'app_RGPD')]
+    public function RGPD()
+    {
+
+        return $this->render('office_sharing/RGPD.html.twig', [
+
+        ]);
+    }
 }

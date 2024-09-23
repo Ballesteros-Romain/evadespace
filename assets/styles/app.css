@@ -12502,4 +12502,8 @@ button:hover {
   .fc-button-group {
     margin: 1em;
   }
+}
+.aRGPD {
+  margin-left: 50%;
+  transform: translateY(-50%);
 }/*# sourceMappingURL=app.css.map */
