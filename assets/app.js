@@ -11,6 +11,7 @@ import "@popperjs/core";
 // any CSS you import will output into a single css file (app.css in this case)
 import "./styles/app.css";
 import "./calendar.js";
+import "./modal.js";
 // ========================= BURGER =======================================
 const menuMobile = document.querySelector(".menu-mobile");
 const menuMobileClose = document.querySelector(".menu-close-mobile");
