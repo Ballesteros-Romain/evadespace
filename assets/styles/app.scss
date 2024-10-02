@@ -547,3 +547,26 @@ button {
   text-decoration: none;
   font-weight: bolder;
 }
+// ======================================== CONTACTFORM ===============================================
+
+.contactForm {
+  width: 80%;
+  margin: auto;
+}
+.btn-contact {
+  width: 40%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+textarea {
+  resize: none;
+}
+
+@media screen and (min-width: 400px) {
+  .contactForm {
+    width: 40%;
+  }
+}

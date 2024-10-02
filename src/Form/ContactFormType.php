@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
-class ContatcFormType extends AbstractType
+class ContactFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -21,12 +21,12 @@ class ContatcFormType extends AbstractType
                 'label' => 'Email'
             ])
             ->add('message', TextareaType::class, [
-                'label' => 'Commentaire',
+                'label' => 'Message',
                 'constraints' => [
                     new Assert\NotBlank([
                         'message' => 'Le champ est obligatoire',
                     ]),
-                    new Assert\NotBlank([
+                    new Assert\Length([
                         'min' => 3,
                         'max' => 500,
                         'minMessage' => 'Le commentaire doit comporter au moins {{ limit }} caractères.',
@@ -36,6 +36,10 @@ class ContatcFormType extends AbstractType
                         'pattern' => '/^[a-zA-Z0-9\s,\'"!?]+$/',
                         'message' => 'Le commentaire contient des caractères non autorisés.',
                     ]),
+                ],
+                'attr' => [
+                    'rows' => 8,
+                    'style' => 'resize: none;'
                 ]
             ])
         ;

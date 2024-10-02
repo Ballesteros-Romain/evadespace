@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Contact;
 use App\Entity\Payment;
 use App\Entity\Text;
 use App\Entity\User;
@@ -44,5 +45,6 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('Textes', 'fa-solid fa-folder-open', Text::class);
         yield MenuItem::linkToCrud('Workspace', 'fa-solid fa-box', Workspace::class);
         yield MenuItem::linkToCrud('Paiement', 'fa-solid fa-credit-card', Payment::class);
+        yield MenuItem::linkToCrud('Contact', 'fa-solid fa-message', Contact::class);
     }
 }
