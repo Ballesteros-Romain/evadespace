@@ -29,8 +29,8 @@ final class ReservationListener
         $end_date = $user->getEndDate();
 
         $email = (new TemplatedEmail())
-        ->from('evadespace@contact.com')
-        // ->from(new Address('evadespace@contact.com', 'contact evad\'espace'))
+        // ->from('evadespace@contact.com')
+        ->from('evadespace@contact.com', 'contact evad\'espace')
         ->to($user->getEmail())
         ->subject('Il y a une nouvelle reservation')
         ->htmlTemplate('_partials/_mail.html.twig')
