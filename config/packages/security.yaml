@@ -39,6 +39,8 @@ security:
   access_control:
     - { path: ^/admin, roles: ROLE_ADMIN }
     # - { path: ^/account, roles: ROLE_USER }
+    - { path: ^/api/reservations, roles: ROLE_USER }
+    - { path: ^/reservation, roles: ROLE_USER }
 
 when@test:
   security:

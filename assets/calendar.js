@@ -6,7 +6,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 document.addEventListener("DOMContentLoaded", function () {
   const calendarEl = document.getElementById("calendar");
 
-  // Fonction pour formater une date en format "DD/MM/YYYY HH:MM"
+  // Fonction pour formater une date au format "DD/MM/YYYY HH:MM"
   function formatDateForPrompt(date) {
     const day = date.getDate().toString().padStart(2, "0");
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   }
 
-  // Fonction pour convertir une date au format "DD/MM/YYYY HH:MM" en format ISO
+  // Fonction pour convertir une date au format "DD/MM/YYYY HH:MM" en ISO
   function parseDateFromPrompt(dateString) {
     const [day, month, year, hour, minute] = dateString
       .split(/[/\s:]/)
@@ -24,12 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
     return new Date(year, month - 1, day, hour, minute).toISOString();
   }
 
-  // Fonction pour vérifier si la date est dans les horaires d'ouverture
+  // Fonction pour vérifier si la date est dans les horaires d'ouverture (9h - 18h)
   function isWithinBusinessHours(date) {
     const dayOfWeek = date.getDay();
     const hour = date.getHours();
     const minute = date.getMinutes();
-    // Horaires d'ouverture (09:00 - 18:00) du lundi au vendredi
     return (
       dayOfWeek >= 1 &&
       dayOfWeek <= 5 &&
@@ -58,164 +57,145 @@ document.addEventListener("DOMContentLoaded", function () {
       week: "semaine",
       day: "jour",
     },
-    minTime: "09:00:00", // Début de la journée à 9h
-    defaultAllDayEventDuration: { hours: 8 }, // Durée par défaut de 8 heures
-    allDayText: "jour entier",
+    minTime: "09:00:00",
     allDaySlot: false,
-    eventInteractive: true,
     selectable: true,
     nowIndicator: true,
     editable: true,
     navLinks: true,
     events: "/api/events",
-    select: function (info) {
-      const start = info.start;
-      const end = info.end;
 
-      // Pré-remplir les champs du prompt avec les valeurs sélectionnées
+    // Fonction de sélection
+    select: function (info) {
       const title = prompt("Entrez un nom de réservation:");
-      if (title === null) {
-        return; // Si l'utilisateur clique sur "Annuler", arrêter ici
-      }
+      if (!title) return;
 
       const startDate = prompt(
         "Entrez la date et l'heure de début (format: DD/MM/YYYY HH:MM):",
-        formatDateForPrompt(start)
+        formatDateForPrompt(info.start)
       );
-      if (title === null) {
-        return; // Si l'utilisateur clique sur "Annuler", arrêter ici
-      }
+      if (!startDate) return;
+
       const endDate = prompt(
         "Entrez la date et l'heure de fin (format: DD/MM/YYYY HH:MM):",
-        formatDateForPrompt(end)
+        formatDateForPrompt(info.end)
       );
-      if (title === null) {
-        return; // Si l'utilisateur clique sur "Annuler", arrêter ici
+      if (!endDate) return;
+
+      const startParsed = new Date(parseDateFromPrompt(startDate));
+      const endParsed = new Date(parseDateFromPrompt(endDate));
+
+      if (
+        !isWithinBusinessHours(startParsed) ||
+        !isWithinBusinessHours(endParsed)
+      ) {
+        alert(
+          "Les dates doivent être dans les horaires d'ouverture (09:00 - 18:00) du lundi au vendredi."
+        );
+        return;
       }
 
-      if (title && startDate && endDate) {
-        const startDateParsed = new Date(parseDateFromPrompt(startDate));
-        const endDateParsed = new Date(parseDateFromPrompt(endDate));
-
-        if (
-          !isWithinBusinessHours(startDateParsed) ||
-          !isWithinBusinessHours(endDateParsed)
-        ) {
-          alert(
-            "Les dates doivent être dans les horaires d'ouverture (09:00 - 18:00) du lundi au vendredi."
-          );
-          return;
-        }
-
-        fetch("/api/reservations", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-Token": document
-              .querySelector('meta[name="csrf-token"]')
-              .getAttribute("content"),
-          },
-          body: JSON.stringify({
-            start_date: parseDateFromPrompt(startDate),
-            end_date: parseDateFromPrompt(endDate),
-            title: title,
-          }),
+      fetch("/api/reservations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content"),
+        },
+        body: JSON.stringify({
+          title: title,
+          start_date: startParsed.toISOString(),
+          end_date: endParsed.toISOString(),
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            calendar.addEvent({
+              id: data.id,
+              title: title,
+              start: startParsed,
+              end: endParsed,
+            });
+          } else {
+            alert("Erreur lors de la sauvegarde de la réservation.");
+          }
         })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              calendar.addEvent({
-                id: data.id,
-                title: title,
-                start: parseDateFromPrompt(startDate),
-                end: parseDateFromPrompt(endDate),
-              });
-            } else {
-              alert("Erreur lors de la sauvegarde de la réservation");
-            }
-          })
-          .catch((error) => {
-            console.error("Erreur :", error);
-            alert("Erreur lors de la sauvegarde de la réservation");
-          });
-      }
+        .catch((error) => {
+          console.error("Erreur :", error);
+          alert("Erreur lors de la sauvegarde de la réservation.");
+        });
 
       calendar.unselect();
     },
 
+    // Modifier l'événement
     eventClick: function (info) {
       const eventId = info.event.id;
       const currentTitle = info.event.title;
-      const currentStart = info.event.start;
-      const currentEnd = info.event.end;
 
-      // Convertir les dates en chaînes formatées
-      const formattedStart = currentStart
-        ? formatDateForPrompt(currentStart)
-        : "";
-      const formattedEnd = currentEnd ? formatDateForPrompt(currentEnd) : "";
-
-      // Pré-remplir les champs du prompt avec les valeurs actuelles
       const newTitle = prompt(
         "Modifier le titre de la réservation:",
         currentTitle
       );
-      const newStartDate = prompt(
-        "Modifier la date et l'heure de début (format: DD-MM-YYYY HH:MM):",
-        formattedStart
+      if (!newTitle) return;
+
+      const startDate = prompt(
+        "Modifier la date et l'heure de début (format: DD/MM/YYYY HH:MM):",
+        formatDateForPrompt(info.event.start)
       );
-      const newEndDate = prompt(
-        "Modifier la date et l'heure de fin (format: DD-MM-YYYY HH:MM):",
-        formattedEnd
+      if (!startDate) return;
+
+      const endDate = prompt(
+        "Modifier la date et l'heure de fin (format: DD/MM/YYYY HH:MM):",
+        formatDateForPrompt(info.event.end)
       );
+      if (!endDate) return;
 
-      if (newTitle !== null && newStartDate && newEndDate) {
-        const newStartDateParsed = new Date(parseDateFromPrompt(newStartDate));
-        const newEndDateParsed = new Date(parseDateFromPrompt(newEndDate));
+      const startParsed = new Date(parseDateFromPrompt(startDate));
+      const endParsed = new Date(parseDateFromPrompt(endDate));
 
-        if (
-          !isWithinBusinessHours(newStartDateParsed) ||
-          !isWithinBusinessHours(newEndDateParsed)
-        ) {
-          alert(
-            "Les dates doivent être dans les horaires d'ouverture (09:00 - 18:00) du lundi au vendredi."
-          );
-          return;
-        }
-
-        fetch(`/api/reservations/${eventId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-Token": document
-              .querySelector('meta[name="csrf-token"]')
-              .getAttribute("content"),
-          },
-          body: JSON.stringify({
-            title: newTitle,
-            start_date: parseDateFromPrompt(newStartDate),
-            end_date: parseDateFromPrompt(newEndDate),
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              info.event.setProp("title", newTitle);
-              info.event.setDates(
-                parseDateFromPrompt(newStartDate),
-                parseDateFromPrompt(newEndDate)
-              );
-            } else {
-              alert("Erreur lors de la mise à jour de la réservation");
-            }
-          })
-          .catch((error) => {
-            console.error("Erreur :", error);
-            alert("Erreur lors de la mise à jour de la réservation");
-          });
+      if (
+        !isWithinBusinessHours(startParsed) ||
+        !isWithinBusinessHours(endParsed)
+      ) {
+        alert(
+          "Les dates doivent être dans les horaires d'ouverture (09:00 - 18:00) du lundi au vendredi."
+        );
+        return;
       }
+
+      fetch(`/api/reservations/${eventId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content"),
+        },
+        body: JSON.stringify({
+          title: newTitle,
+          start_date: startParsed.toISOString(),
+          end_date: endParsed.toISOString(),
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            info.event.setProp("title", newTitle);
+            info.event.setDates(startParsed, endParsed);
+          } else {
+            alert("Erreur lors de la mise à jour de la réservation.");
+          }
+        })
+        .catch((error) => {
+          console.error("Erreur :", error);
+          alert("Erreur lors de la mise à jour de la réservation.");
+        });
     },
 
+    // Déplacer l'événement
     eventDrop: function (info) {
       const eventId = info.event.id;
       const newStart = info.event.start;
@@ -231,6 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
         info.revert();
         return;
       }
+
       fetch(`/api/reservations/${eventId}`, {
         method: "PUT",
         headers: {
@@ -240,25 +221,26 @@ document.addEventListener("DOMContentLoaded", function () {
             .getAttribute("content"),
         },
         body: JSON.stringify({
-          start_date: info.event.start.toISOString(),
-          end_date: info.event.end ? info.event.end.toISOString() : null,
+          start_date: newStart.toISOString(),
+          end_date: newEnd ? newEnd.toISOString() : null,
           title: info.event.title,
         }),
       })
         .then((response) => response.json())
         .then((data) => {
           if (!data.success) {
-            alert("Erreur lors de la mise à jour de la réservation");
+            alert("Erreur lors de la mise à jour de la réservation.");
             info.revert();
           }
         })
         .catch((error) => {
           console.error("Erreur :", error);
-          alert("Erreur lors de la mise à jour de la réservation");
+          alert("Erreur lors de la mise à jour de la réservation.");
           info.revert();
         });
     },
 
+    // Redimensionner l'événement
     eventResize: function (info) {
       const eventId = info.event.id;
       const newStart = info.event.start;
@@ -284,25 +266,26 @@ document.addEventListener("DOMContentLoaded", function () {
             .getAttribute("content"),
         },
         body: JSON.stringify({
-          start_date: info.event.start.toISOString(),
-          end_date: info.event.end.toISOString(),
+          start_date: newStart.toISOString(),
+          end_date: newEnd.toISOString(),
           title: info.event.title,
         }),
       })
         .then((response) => response.json())
         .then((data) => {
           if (!data.success) {
-            alert("Erreur lors de la mise à jour de la réservation");
+            alert("Erreur lors de la mise à jour de la réservation.");
             info.revert();
           }
         })
         .catch((error) => {
           console.error("Erreur :", error);
-          alert("Erreur lors de la mise à jour de la réservation");
+          alert("Erreur lors de la mise à jour de la réservation.");
           info.revert();
         });
     },
 
+    // Bouton personnalisé pour supprimer un événement
     customButtons: {
       deleteEventButton: {
         text: "Supprimer un créneau",
@@ -329,12 +312,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     event.remove();
                   }
                 } else {
-                  alert("Erreur lors de la suppression de la réservation");
+                  alert("Erreur lors de la suppression de la réservation.");
                 }
               })
               .catch((error) => {
                 console.error("Erreur :", error);
-                alert("Erreur lors de la suppression de la réservation");
+                alert("Erreur lors de la suppression de la réservation.");
               });
           }
         },
