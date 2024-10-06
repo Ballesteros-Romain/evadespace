@@ -12026,12 +12026,12 @@ header {
 .burgers {
   background: #ffa29a;
   position: relative;
-  top: 70px;
+  top: 80px;
   padding-left: 30px;
   padding-right: 100px;
   border-radius: 0 0 20px 20px;
   z-index: 3;
-  height: 570px;
+  height: 460px;
 }
 
 nav > a {
@@ -12049,6 +12049,20 @@ nav > a {
   color: #5d6371;
 }
 
+.deconexion {
+  position: fixed;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  background: #5d6371;
+  top: 4.8em;
+  right: 6em;
+  z-index: 4;
+  font-size: smaller;
+}
+
 @media screen and (min-width: 400px) {
   .menu-close-mobile {
     position: absolute;
@@ -12059,6 +12073,19 @@ nav > a {
   }
   .logo {
     margin-left: 15px;
+    height: 50px;
+    width: 180px;
+    margin-top: 15px;
+  }
+  header {
+    width: 100%;
+  }
+  .menu-mobile {
+    position: absolute;
+    right: 5.2%;
+  }
+  .deconexion {
+    right: 13.5em;
   }
 }
 main {

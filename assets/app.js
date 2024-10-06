@@ -34,7 +34,7 @@ menuMobile.addEventListener("click", function () {
   menuMobileClose.style.opacity = "1";
   menuMobileClose.style.visibility = "visible";
   if (window.innerWidth < 400) {
-    burger.style.left = "10%";
+    burger.style.left = "3%";
   } else if (window.innerWidth < 850) {
     burger.style.left = "15.3%";
   } else {
@@ -72,3 +72,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 3000); // Change d'avis toutes les 5 secondes
 });
 // =========================================================================
+// const logOut = document.querySelector("#logOut");
+// const hoverDiv = document.querySelector("#hoverDiv");
+
+// logOut.addEventListener("mouseover", function () {
+//   hoverDiv.style.display = "block";
+// });
+
+// logOut.addEventListener("mouseout", function () {
+//   hoverDiv.style.display = "none";
+// });

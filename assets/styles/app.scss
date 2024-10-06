@@ -46,16 +46,17 @@ header {
   right: 35%;
   top: 25%;
 }
+
 .burgers {
   background: $rose;
   position: relative;
-  top: 70px;
-  // left: 30%;
+  top: 80px;
+  // left: 30%
   padding-left: 30px;
   padding-right: 100px;
   border-radius: 0 0 20px 20px;
   z-index: 3;
-  height: 570px;
+  height: 460px;
 }
 nav > a {
   font-size: 1.4rem;
@@ -70,7 +71,27 @@ nav > a {
   text-align: center;
   color: $gris;
 }
-
+// #hoverDiv {
+//   position: absolute;
+//   top: 4em;
+//   right: 8.4em;
+//   background: $gris;
+//   border-radius: 10px;
+// }
+.deconexion {
+  position: fixed;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  background: $gris;
+  // position: absolute;
+  top: 4.8em;
+  right: 6em;
+  z-index: 4;
+  font-size: smaller;
+}
 @media screen and (min-width: 400px) {
   .menu-close-mobile {
     position: absolute;
@@ -81,6 +102,19 @@ nav > a {
   }
   .logo {
     margin-left: 15px;
+    height: 50px;
+    width: 180px;
+    margin-top: 15px;
+  }
+  header {
+    width: 100%;
+  }
+  .menu-mobile {
+    position: absolute;
+    right: 5.2%;
+  }
+  .deconexion {
+    right: 13.5em;
   }
 }
 
